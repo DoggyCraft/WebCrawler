@@ -1,3 +1,4 @@
+#! python2
 import requests
 from bs4 import BeautifulSoup
 
@@ -39,3 +40,4 @@ def crawler(url, maxPages):
     print("visited: " + str(visited))
 
 crawler("http://www.doggycraft.dk", 5)  # url and maxPages to crawl
+raw_input()
