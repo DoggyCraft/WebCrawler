@@ -36,8 +36,6 @@ def crawler(url, maxPages):
         url = links.pop()
         page += 1
 
-    print("links found: " + str(allLinks))
-    print("visited: " + str(visited))
-
-crawler("http://www.doggycraft.dk", 5)  # url and maxPages to crawl
-raw_input()
+    #print("links found: " + str(allLinks))
+    #print("visited: " + str(visited))
+    return allLinks
