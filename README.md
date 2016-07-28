@@ -7,7 +7,8 @@ you can install it using 'pip install BeautifulSoup4'
 
 ```python
 import Crawler
-links = Crawler.crawler("http://www.yourwebsite.dk", MaxPages)
+spider = Crawler.Crawler()
+links = spider.crawler("http://www.yourwebsite.dk", MaxPages)
 print(links)
 ```
 

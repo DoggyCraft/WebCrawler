@@ -2,40 +2,41 @@
 import requests
 from bs4 import BeautifulSoup
 
-links = []
-visited = []
-allLinks = []
 
+class Crawler:
+    def __init__(self):
+        pass
 
-def crawler(url, maxPages):
-    links.append(url)
-    url = links.pop()
-    page = 0
-    while page < maxPages:
-        try:
-            visited.append(url)
-            code = requests.get(url)
-            plain_text = code.text
-            soup = BeautifulSoup(plain_text, "html.parser")
-            for link in soup.findAll("a"):
-                href = link.get("href")
-                if href.split()[0][0] == "/":
-                    href = url + href
-                if href.split()[0][0] == "#":
-                    href = url + "/" + href
-                if href not in allLinks:
-                    links.append(href)
-                    allLinks.append(href)
-        except:
-            if url == None:
-                print(str(url)+" findes ikke")
+    def crawler(self,url, maxPages):
+        queue = []
+        visited = []
+        links = []
+        queue.append(url)
+        url = queue.pop()
+        page = 0
+        while page < maxPages:
+            try:
+                visited.append(url)
+                code = requests.get(url)
+                plain_text = code.text
+                soup = BeautifulSoup(plain_text, "html.parser")
+                for link in soup.findAll("a"):
+                    href = link.get("href")
+                    if href.split()[0][0] == "/":
+                        href = url + href
+                    if href.split()[0][0] == "#":
+                        href = url + "/" + href
+                    if href not in links:
+                        queue.append(href)
+                        links.append(href)
+            except:
+                if url == None:
+                    print(str(url)+" findes ikke")
 
-        if len(links) == 0:
-            print("har ikke flere links")
-            break
-        url = links.pop()
-        page += 1
+            if len(queue) == 0:
+                print("har ikke flere sider at crawle")
+                break
+            url = queue.pop()
+            page += 1
 
-    #print("links found: " + str(allLinks))
-    #print("visited: " + str(visited))
-    return allLinks
+        return links
