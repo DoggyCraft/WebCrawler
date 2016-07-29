@@ -4,10 +4,15 @@ from bs4 import BeautifulSoup
 
 
 class Crawler:
-    def __init__(self):
-        pass
+    def __init__(self, url, maxPages):
+        self.url = url
+        self.maxPages = maxPages
+        links = self.getLinks()
+        self.getLinks = links
 
-    def crawler(self,url, maxPages):
+    def getLinks(self):
+        url = self.url
+        maxPages = self.maxPages
         queue = []
         visited = []
         links = []
