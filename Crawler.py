@@ -37,7 +37,11 @@ class Crawler:
                         links.append(href)
             except:
                 if url == None:
+<<<<<<< HEAD
                     print(str(url)+" does not exist!does not exist!")
+=======
+                    print(str(url)+" does not exist!")
+>>>>>>> origin/master
 
             if len(queue) == 0:
                 print("I do not have more pages to crawl..")
