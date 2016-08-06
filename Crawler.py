@@ -9,6 +9,7 @@ class Crawler:
         self.maxPages = maxPages
         data = self.Crawl()
         self.getLinks = data["links"]
+        self.getTitle = data["titles"]
 
     def Crawl(self):
         data = {}
@@ -16,6 +17,7 @@ class Crawler:
         maxPages = self.maxPages
         queue = []
         visited = []
+        titles = []
         links = []
         queue.append(url)
         url = queue.pop()
@@ -37,11 +39,7 @@ class Crawler:
                         links.append(href)
             except:
                 if url == None:
-<<<<<<< HEAD
-                    print(str(url)+" does not exist!does not exist!")
-=======
                     print(str(url)+" does not exist!")
->>>>>>> origin/master
 
             if len(queue) == 0:
                 print("I do not have more pages to crawl..")
@@ -49,4 +47,6 @@ class Crawler:
             url = queue.pop()
             page += 1
             data["links"] = links
+            titles.append(soup.title.string)
+            data["titles"] = titles
         return data
