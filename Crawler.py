@@ -7,10 +7,11 @@ class Crawler:
     def __init__(self, url, maxPages):
         self.url = url
         self.maxPages = maxPages
-        links = self.getLinks()
-        self.getLinks = links
+        data = self.Crawl()
+        self.getLinks = data["links"]
 
-    def getLinks(self):
+    def Crawl(self):
+        data = {}
         url = self.url
         maxPages = self.maxPages
         queue = []
@@ -36,12 +37,12 @@ class Crawler:
                         links.append(href)
             except:
                 if url == None:
-                    print(str(url)+" findes ikke")
+                    print(str(url)+" does not exist!does not exist!")
 
             if len(queue) == 0:
-                print("har ikke flere sider at crawle")
+                print("I do not have more pages to crawl..")
                 break
             url = queue.pop()
             page += 1
-
-        return links
+            data["links"] = links
+        return data
