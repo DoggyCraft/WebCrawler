@@ -36,10 +36,10 @@ class Crawler:
                         links.append(href)
             except:
                 if url == None:
-                    print(str(url)+" findes ikke")
+                    print(str(url)+" does not exist!")
 
             if len(queue) == 0:
-                print("har ikke flere sider at crawle")
+                print("I do not have more pages to crawl..")
                 break
             url = queue.pop()
             page += 1
